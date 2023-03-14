@@ -4,7 +4,9 @@ package com.example.post.controller;
 
 import com.example.post.dto.PostRequestDto;
 import com.example.post.dto.PostResponseDto;
+//import com.example.post.service.CommentService;
 import com.example.post.service.PostService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 public class PostController {
     private final PostService postService;
-    @Autowired
-    public PostController(PostService postService) {
-        this.postService = postService;
-    }
+//    private final CommentService commentService;
+
+
     @PostMapping("/create")
     public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto requestDto,
                                                       HttpServletRequest request) {

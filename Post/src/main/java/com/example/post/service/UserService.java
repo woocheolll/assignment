@@ -19,7 +19,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private static final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC";
+    private static final String ADMIN_TOKEN = "admin";
     private final JwtUtil jwtUtil;
 
     @Transactional(readOnly = true)
@@ -54,7 +54,7 @@ public class UserService {
         // 사용자 ROLE 확인
         UserRoleEnum role = UserRoleEnum.USER;
         if (signupRequestDto.isAdmin()) {
-            if (!signupRequestDto.getAdminToken().equals(ADMIN_TOKEN)) {
+            if (!ADMIN_TOKEN.equals(signupRequestDto.getAdminToken())) {
                 throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
             }
             role = UserRoleEnum.ADMIN;
